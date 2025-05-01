@@ -721,3 +721,107 @@ Le matchmaking est le processus qui permet de trouver un adversaire ou une équi
 
 
 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📄 Fiche Technique : Les 7 Couches du Modèle OSI
+N°	Couche	Rôle Principal	Exemples de Protocoles / Matériel
+7	Application	Interface avec l'utilisateur / les logiciels	HTTP, FTP, SMTP, DNS
+6	Présentation	Format des données, chiffrement, compression	SSL/TLS, JPEG, MPEG, ASCII, JSON
+5	Session	Gestion des connexions, ouverture/fermeture de sessions	NetBIOS, RPC, PPTP
+4	Transport	Fiabilité, contrôle d’erreurs, segmentation	TCP (fiable), UDP (rapide)
+3	Réseau	Routage des paquets entre réseaux	IP, ICMP, IGMP
+2	Liaison de données	Transmission des trames sur un même réseau physique	Ethernet, Wi-Fi (802.11), ARP, PPP
+1	Physique	Transmission des bits sur le support physique	Câble RJ45, fibre optique, ondes radio
+
+🧠 À retenir :
+Chaque couche a une fonction spécifique et communique avec ses couches voisines.
+
+Les données sont encapsulées en descendant (Application → Physique) et désencapsulées en montant (Physique → Application).
+
+Les modèles TCP/IP (utilisé dans l'Internet) sont plus simplifiés (4 couches seulement).
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+📘 Modèle OSI – Les 7 couches
+Couche	Nom	Rôle principal	Exemples
+7	Application	Interface entre l’utilisateur et le réseau	HTTP, FTP, SMTP, DNS
+6	Présentation	Traduction, chiffrement, compression des données	SSL/TLS, JPEG, PNG, XML, ASCII
+5	Session	Ouverture, gestion et fermeture des sessions	NetBIOS, RPC
+4	Transport	Contrôle de flux, fiabilité, gestion des erreurs	TCP, UDP
+3	Réseau	Routage et adressage IP	IP, ICMP, IGMP
+2	Liaison de données	Encadrement des données, détection d’erreurs sur le support local	Ethernet, PPP, ARP
+1	Physique	Transmission des bits sur le support matériel	Câble, fibre optique, Wi-Fi, Bluetooth
+
+🌐 Modèle TCP/IP – Les 4 couches
+Couche	Nom	Correspondance OSI	Rôle principal	Exemples
+4	Application	Couches 5-6-7 OSI	Services réseau aux applications	HTTP, FTP, DNS, SMTP
+3	Transport	Couche 4 OSI	Transport fiable ou rapide des données	TCP, UDP
+2	Internet	Couche 3 OSI	Adressage et routage inter-réseaux	IP, ICMP
+1	Accès réseau	Couches 1-2 OSI	Transmission des données sur le réseau physique	Ethernet, Wi-Fi, ARP
+
+🔁 Comparaison visuelle OSI vs TCP/IP
+markdown
+Copier
+Modifier
+Modèle OSI           Modèle TCP/IP
+------------         ----------------
+7. Application    →  4. Application
+6. Présentation   →     "
+5. Session        →     "
+4. Transport      →  3. Transport
+3. Réseau         →  2. Internet
+2. Liaison        →  1. Accès réseau
+1. Physique       →     "
+🧠 Astuce pour retenir les 7 couches OSI (du haut vers le bas) :
+"All People Seem To Need Data Processing"
+→ Application, Presentation, Session, Transport, Network, Data Link, Physical
+
+Ou en français :
+
+"Au Peu Sur Terre, Nous Livrons Physiquement"
+→ Application, Présentation, Session, Transport, Réseau, Liaison, Physique
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+📦 Taille des paquets TCP vs UDP
+Élément	UDP	TCP
+Taille d’en-tête	8 octets	20 octets (minimum), jusqu'à 60
+Taille max des données	65 507 octets (en théorie)	Dépend du MTU, mais peut être fragmenté
+Taille totale max (IPV4)	65 535 octets (header IP inclus)	65 535 octets (idem)
+Fragmentation	Gérée par IP	Gérée par TCP et IP
+Transmission typique	< 512 octets (DNS, VoIP...)	Variable (de quelques octets à plusieurs Ko)
+
+📌 Détails importants :
+📘 UDP (User Datagram Protocol)
+En-tête fixe : 8 octets
+
+Aucun contrôle de flux, de congestion ni de réémission.
+
+Taille max utile (données) : 65 507 octets = 65 535 - 8 (UDP) - 20 (IP)
+
+Utilisé pour des données rapides : VoIP, DNS, vidéos, jeux...
+
+📗 TCP (Transmission Control Protocol)
+En-tête minimum : 20 octets, extensible avec options (jusqu'à 60)
+
+Taille utile variable, mais souvent limitée à la taille du MTU (~1460 octets) sans fragmentation.
+
+Gère la fiabilité : accusés de réception, retransmissions, etc.
+
+Utilisé pour : web (HTTP/HTTPS), email, FTP, etc.
+
+📐 MTU : Maximum Transmission Unit
+En général : 1 500 octets (Ethernet)
+
+TCP doit se conformer à cette limite (en-tête IP + TCP ≤ 40, donc payload ≈ 1 460 octets sans fragmentation)
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
